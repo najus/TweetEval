@@ -2,6 +2,7 @@ package twitter
 
 
 import com.typesafe.config.ConfigFactory
+import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
 
 /**
@@ -16,5 +17,11 @@ object TweetEval {
       .setOAuthConsumerSecret(config.getString("consumerSecret"))
       .setOAuthAccessToken(config.getString("accessToken"))
       .setOAuthAccessTokenSecret(config.getString("accessTokenSecret"))
+    val tf = new TwitterFactory(conn.build())
+    val twitter = tf.getInstance()
+    val timeline = twitter.getUserTimeline()
+    println(timeline)
+
+    
   }
 }
